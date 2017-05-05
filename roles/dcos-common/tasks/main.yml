@@ -1,0 +1,49 @@
+---
+# Common software prerequisites for DC/OS 1.9
+
+- name: Upgrade all packages
+  yum:
+    name: "*"
+    state: latest
+
+- name: Install prerequisite packages for DC/OS
+  yum: name={{ item }} state=present
+  with_items:
+    - ntp
+    - tar
+    - xz
+    - unzip
+    - curl
+    - ipset
+
+# Disable firewalld due to issue with Docker
+# Suitable for test/dev environments only
+
+- name: Disable firewalld
+  service:
+    name: firewalld
+    state: stopped
+    enabled: no
+
+# Everything needed for DC/OS supported version of Docker
+# No need to set storage driver to OverlayFS - Docker 1.13 default
+
+- name: Add Docker to yum repository
+  yum_repository:
+    name: dockerrepo
+    description: Docker Repository
+    baseurl: https://yum.dockerproject.org/repo/main/centos/7/
+    gpgkey: https://yum.dockerproject.org/gpg
+    gpgcheck: yes
+    file: docker
+
+- name: Install Docker Engine
+  yum:
+    name: docker-engine-1.13.1
+    update_cache: yes
+
+- name: Start Docker service
+  service:
+    name: docker
+    enabled: yes
+    state: started

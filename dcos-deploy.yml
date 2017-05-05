@@ -1,0 +1,5 @@
+---
+- hosts: dcos-bootstrap
+  become: yes
+  roles:
+  - dcos-common
