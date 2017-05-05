@@ -72,6 +72,13 @@
     name: nogroup
     state: present
 
+# Disable dnsmasq which uses port 53 as it's needed by Spartan
+
+- name: Disable dnsmasq
+  service:
+    name: dnsmasq
+    state: stopped
+
 # Create an install directory to keep everything tidy
 
 - name: Create install directory
