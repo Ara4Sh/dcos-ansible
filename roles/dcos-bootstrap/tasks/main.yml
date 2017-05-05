@@ -1,0 +1,33 @@
+---
+# Configure DC/OS bootstrap node
+
+- name: Create genconf directory
+  file: 
+    path: ~/dcos/genconf 
+    state: directory
+
+- name: Copy DC/OS configuration file
+  template:
+    src: genconf/config.yaml.j2
+    dest: ~/dcos/genconf
+    mode: 755
+
+- name: Copy ip-detect
+  template:
+    src: genconf/ip-detect.j2
+    dest: ~/dcos/genconf/ip-detect
+    mode: 755
+
+- name: Download DC/OS installer
+  get_url:
+    url: https://downloads.dcos.io/dcos/stable/dcos_generate_config.sh
+    dest: ~/dcos/dcos_generate_config.sh
+    mode: 755
+
+- name: Install Docker nginx
+  docker:
+    name: dcos-bootstrap
+    image: nginx
+    state: started
+    ports: 80:80
+    volumes: ~/dcos/genconf/:/usr/share/nginx/html:ro

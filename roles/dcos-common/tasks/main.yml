@@ -3,7 +3,7 @@
 
 - name: Upgrade all packages
   yum:
-    name: "*"
+    name: *
     state: latest
 
 - name: Install prerequisite packages for DC/OS
@@ -26,9 +26,9 @@
     enabled: no
 
 # Everything needed for DC/OS supported version of Docker
-# No need to set storage driver to OverlayFS - Docker 1.13 default
+# No need to set storage driver to OverlayFS. Set by default in Docker 1.13
 
-- name: Add Docker to yum repository
+- name: Add Docker yum repository
   yum_repository:
     name: dockerrepo
     description: Docker Repository
@@ -42,8 +42,30 @@
     name: docker-engine-1.13.1
     update_cache: yes
 
+- name: Create Docker group
+  group:
+    name: docker
+    state: present
+
+- name: Add user to Docker group
+  user:
+    name: {{ ansible_user_id }}
+    groups: docker
+    register: group_add
+
+- name: Reconnect SSH to confirm group permissions
+  local_action: command ssh -O exit {{ ansible_ssh_host }}
+  when: group_add | changed
+
 - name: Start Docker service
   service:
     name: docker
     enabled: yes
     state: started
+
+# Create an install directory to keep everything tidy
+
+- name: Create install directory
+  file:
+    path: ~/dcos
+    state: directory

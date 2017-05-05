@@ -1,5 +1,6 @@
 ---
 - hosts: dcos-bootstrap
-  become: yes
+  become: true
   roles:
   - dcos-common
+  - dcos-bootstrap

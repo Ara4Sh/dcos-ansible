@@ -1,0 +1,31 @@
+
+bootstrap_url: http://10.0.1.5:80
+
+customer_key: 12345-12345-12345-12345-12345-123456
+
+cluster_name: dcos-ansible
+
+# Cluster IPs
+master_discovery: static
+master_list:
+- 10.0.1.6
+
+agent_list:
+- 10.0.1.7
+- 10.0.1.8
+
+# DNS (Azure)
+resolvers:
+- 168.63.129.16
+
+# Exhibitor backend, uses internal DC/OS storage
+exhibitor_storage_backend: static
+
+# Security
+ssh_key_path: /genconf/dcos-key.pem
+ssh_port: 22
+ssh_user: dcos
+security: disabled
+
+# Performance and tuning
+process_timeout: 360
