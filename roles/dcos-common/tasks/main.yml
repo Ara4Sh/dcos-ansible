@@ -52,9 +52,6 @@
     name: "{{ ansible_user_id }}"
     groups: docker
 
-- name: Reconnect SSH to confirm group permissions
-  local_action: "command ssh -O exit {{ ansible_ssh_host }}"
-
 - name: Start Docker service
   service:
     name: docker
