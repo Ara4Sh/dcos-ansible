@@ -3,7 +3,7 @@
 
 - name: Upgrade all packages
   yum:
-    name: *
+    name: "*"
     state: latest
 
 - name: Install prerequisite packages for DC/OS
