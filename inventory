@@ -1,5 +1,5 @@
 [dcos-bootstrap]
-bootstrap ansible_host=10.0.1.5 ansible_user=dcos
+bootstrap ansible_host=10.0.1.6 ansible_user=dcos
 
 [dcos-master]
 master1 ansible_host=xx.xx.xx.xx
