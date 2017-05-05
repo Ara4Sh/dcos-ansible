@@ -3,31 +3,31 @@
 
 - name: Create genconf directory
   file: 
-    path: "/root/dcos/genconf"
+    path: "/home/dcos/genconf"
     state: directory
 
 - name: Copy DC/OS configuration file
   template:
     src: "genconf/config.yaml.j2"
-    dest: "/root/dcos/genconf/config.yaml"
+    dest: "/home/dcos/genconf/config.yaml"
     mode: 755
 
 - name: Copy ip-detect
   template:
     src: "genconf/ip-detect.j2"
-    dest: "/root/dcos/genconf/ip-detect"
+    dest: "/home/dcos/genconf/ip-detect"
     mode: 755
 
 - name: Download DC/OS installer
   get_url:
     url: "https://downloads.dcos.io/dcos/stable/dcos_generate_config.sh"
-    dest: "/root/dcos/dcos_generate_config.sh"
+    dest: "/home/dcos/dcos_generate_config.sh"
     mode: 755
 
 - name: Generate custom build file for DC/OS
-  command: "/root/dcos/dcos_generate_config.sh"
+  command: "/home/dcos/dcos_generate_config.sh"
   args:
-    chdir: "/root/dcos/"
+    chdir: "/home/dcos/"
 
 - name: Install docker-python module
   yum:
@@ -40,4 +40,4 @@
     image: nginx
     state: started
     ports: 80:80
-    volumes: "/root/dcos/genconf/serve:/usr/share/nginx/html:ro"
+    volumes: "/home/dcos/genconf/serve:/usr/share/nginx/html:ro"

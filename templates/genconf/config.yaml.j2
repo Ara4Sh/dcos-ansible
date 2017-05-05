@@ -1,5 +1,5 @@
 
-bootstrap_url: http://10.0.1.5:80
+bootstrap_url: http://10.0.1.6:80
 
 customer_key: 12345-12345-12345-12345-12345-123456
 
@@ -8,10 +8,12 @@ cluster_name: dcos-ansible
 # Cluster IPs
 master_discovery: static
 master_list:
-- 10.0.1.6
+- 10.0.1.5
 
 agent_list:
 - 10.0.1.7
+
+public_agent_list:
 - 10.0.1.8
 
 # DNS (Azure)

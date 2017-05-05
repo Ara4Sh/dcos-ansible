@@ -1,6 +1,20 @@
 ---
-- hosts: dcos-bootstrap
+- hosts: dcos-all
   become: true
   roles:
   - dcos-common
-  - dcos-bootstrap
+
+- hosts: dcos-master
+  become: true
+  roles:
+  - dcos-master
+
+- hosts: dcos-agent-priv
+  become: true
+  roles:
+  - dcos-agent-priv
+
+- hosts: dcos-agent-pub
+  become: true
+  roles:
+  - dcos-agent-pub
