@@ -2,7 +2,7 @@
 # Configure DC/OS master node(s)
 
 - name: Make /tmp/dcos directory
-   file:
+  file:
     path: /tmp/dcos
     state: directory
 
