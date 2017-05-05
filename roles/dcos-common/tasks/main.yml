@@ -62,5 +62,5 @@
 
 - name: Create install directory
   file:
-    path: "/home/dcos"
+    path: "/root/dcos"
     state: directory
