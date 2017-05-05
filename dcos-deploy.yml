@@ -4,7 +4,7 @@
   roles:
   - dcos-common
 
-- hosts: dcos-master
+- hosts: dcos-bootstrap
   become: true
   roles:
   - dcos-bootstrap
