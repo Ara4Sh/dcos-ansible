@@ -58,6 +58,20 @@
     enabled: yes
     state: started
 
+# Put SELinux in permissive mode, logging actions that would be blocked
+
+- name: Set SELinux to permissive mode
+  selinux:
+    policy: targeted
+    state: permissive
+
+# Create nogroup
+
+- name: Add nogroup to groups
+  group:
+    name: nogroup
+    state: present
+
 # Create an install directory to keep everything tidy
 
 - name: Create install directory
