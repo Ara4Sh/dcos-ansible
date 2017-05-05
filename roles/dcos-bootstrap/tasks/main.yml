@@ -26,8 +26,8 @@
 
 - name: Generate custom build file for DC/OS
   command: "/root/dcos/dcos_generate_config.sh"
-    args:
-      chdir: "/root/dcos/"
+  args:
+    chdir: "/root/dcos/"
 
 - name: Install docker-python module
   yum:
