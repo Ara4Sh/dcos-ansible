@@ -9,7 +9,7 @@
 - name: Copy DC/OS configuration file
   template:
     src: "genconf/config.yaml.j2"
-    dest: "/home/dcos/genconf"
+    dest: "/home/dcos/genconf/config.yaml"
     mode: 755
 
 - name: Copy ip-detect
@@ -35,4 +35,4 @@
     image: nginx
     state: started
     ports: 80:80
-    volumes: "/home/dcos/genconf/:/usr/share/nginx/html:ro"
+    volumes: "/home/dcos/genconf/serve:/usr/share/nginx/html:ro"
