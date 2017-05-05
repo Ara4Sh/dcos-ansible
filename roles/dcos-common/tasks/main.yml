@@ -49,7 +49,7 @@
 
 - name: Add user to Docker group
   user:
-    name: {{ ansible_user_id }}
+    name: "{{ ansible_user_id }}"
     groups: docker
     register: group_add
 
