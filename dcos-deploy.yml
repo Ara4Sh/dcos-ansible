@@ -19,7 +19,7 @@
   roles:
   - dcos-agent-priv
 
-- hosts: dcos-agent-pub
-  become: true
-  roles:
-  - dcos-agent-pub
+#- hosts: dcos-agent-pub
+#  become: true
+#  roles:
+#  - dcos-agent-pub
