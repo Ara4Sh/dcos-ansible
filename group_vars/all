@@ -1,4 +1,4 @@
-bootstrap_url = http://10.0.1.5
+bootstrap_url = "http://10.0.1.5"
 bootstrap_port = 80
 
 cluster_name = "Danny DC/OS Cluster"
