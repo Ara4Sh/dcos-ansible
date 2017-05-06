@@ -1,14 +1,14 @@
 # Variables to change install configuration based on own environment
 # Ensure to also edit ansible inventory with IPs
 
-bootstrap_url = "http://10.0.1.5"
-bootstrap_port = "80"
+bootstrap_url = http://10.0.1.5
+bootstrap_port = 80
 
 cluster_name = "Danny DC/OS Cluster"
 cluster_key = "12345-12345-12345-12345-12345-123456"
 
-dns_resolver = "168.63.129.16"
+dns_resolver = 168.63.129.16
 
-master_ip0 = "10.0.1.6"
+master_ip0 = 10.0.1.6
 
-priv_agent_ip0 = "10.0.1.7"
+priv_agent_ip0 = 10.0.1.7
