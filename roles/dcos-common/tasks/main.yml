@@ -49,7 +49,7 @@
 
 - name: Add user to Docker group
   user:
-    name: "{{ ansible_user_id }}"
+    name: {{ ansible_user_id }}
     groups: docker
 
 - name: Start Docker service
@@ -72,7 +72,7 @@
     name: nogroup
     state: present
 
-# Disable dnsmasq which uses port 53 as it's needed by Spartan
+# Disable dnsmasq which uses port 53 as it's needed by DC/OS Spartan
 
 - name: Disable dnsmasq
   service:

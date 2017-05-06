@@ -1,24 +1,31 @@
 
-bootstrap_url: http://10.0.1.5:80
+bootstrap_url: {{ bootstrap_url }}:{{ bootstrap_port }}
 
-customer_key: 12345-12345-12345-12345-12345-123456
+customer_key: {{ cluster_key }}
 
-cluster_name: dcos-ansible
+cluster_name: {{ cluster_name }}
 
 # Cluster IPs
 master_discovery: static
 master_list:
-- 10.0.1.6
+- {{ master_ip0 }}
+# - {{ master_ip1 }}
+# - {{ master_ip2 }}
 
 agent_list:
-- 10.0.1.7
+- {{ priv_agent_ip0 }}
+# - {{ priv_agent_ip1 }}
+# - {{ priv_agent_ip2 }}
+# - {{ priv_agent_ip3 }}
+# - {{ priv_agent_ip4 }}
 
 # public_agent_list:
-# - 10.0.1.8
+# - {{ pub_agent_ip0 }}
+# - {{ pub_agent_ip1 }}
 
 # DNS (Azure)
 resolvers:
-- 168.63.129.16
+- {{ dns_resolver }}
 
 # Exhibitor backend, uses internal DC/OS storage
 exhibitor_storage_backend: static
