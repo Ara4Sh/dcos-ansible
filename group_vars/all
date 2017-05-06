@@ -1,6 +1,3 @@
-# Variables to change install configuration based on own environment
-# Ensure to also edit ansible inventory with IPs
-
 bootstrap_url = http://10.0.1.5
 bootstrap_port = 80
 
