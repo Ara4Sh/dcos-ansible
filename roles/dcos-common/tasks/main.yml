@@ -5,6 +5,7 @@
   yum:
     name: "*"
     state: latest
+    exclude: docker*
 
 - name: Install prerequisite packages for DC/OS
   yum: name={{ item }} state=present
@@ -27,7 +28,6 @@
 
 # Everything needed for DC/OS supported version of Docker
 # No need to set storage driver to OverlayFS. Set by default in Docker 1.13
-
 - name: Add Docker yum repository
   yum_repository:
     name: dockerrepo
@@ -51,6 +51,22 @@
   user:
     name: "{{ ansible_user_id }}"
     groups: docker
+
+- name: Create Systemd Docker Directory
+  file: 
+    path: /etc/systemd/system/docker.service.d
+    state: directory
+  when: proxy
+
+- name: Create Docker Proxy Environment file
+  template:
+    src: docker/http-proxy.conf.j2
+    dest: /etc/systemd/system/docker.service.d/http-proxy.conf
+  when: proxy
+
+- name: Reloading Systemd Daemon
+  shell: systemctl daemon-reload
+  when: proxy
 
 - name: Start Docker service
   service:

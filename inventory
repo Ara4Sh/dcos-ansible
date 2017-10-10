@@ -1,19 +1,25 @@
 [dcos-bootstrap]
 bootstrap ansible_host=10.0.1.5
 
-[dcos-master]
+[dcos-masters]
 master1 ansible_host=10.0.1.6
 
-[dcos-agent-priv]
+[dcos-priv-agents]
 agent_priv1 ansible_host=10.0.1.7
 
-[dcos-agent-pub]
+[dcos-pub-agents]
 agent_pub1 ansible_host=10.0.1.8
 
-[dcos-all:children]
-dcos-bootstrap
-dcos-master
-dcos-agent-priv
+[dcos-agents:children]
+dcos-priv-agents
+dcos-pub-agents
 
 [dcos-all:vars]
 ansible_user=dcos
+
+[dcos-all:children]
+dcos-bootstrap
+dcos-masters
+dcos-priv-agents
+dcos-pub-agents
+

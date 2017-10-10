@@ -9,17 +9,17 @@
   roles:
   - dcos-bootstrap
 
-- hosts: dcos-master
+- hosts: dcos-masters
   become: true
   roles:
-  - dcos-master
+  - dcos-masters
 
-- hosts: dcos-agent-priv
+- hosts: dcos-priv-agents
   become: true
   roles:
-  - dcos-agent-priv
+  - dcos-priv-agents
 
-#- hosts: dcos-agent-pub
-#  become: true
-#  roles:
-#  - dcos-agent-pub
+- hosts: dcos-pub-agents
+  become: true
+  roles:
+  - dcos-pub-agents

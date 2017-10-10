@@ -1,21 +1,23 @@
 
 bootstrap_url: {{ bootstrap_url }}:{{ bootstrap_port }}
 
-customer_key: {{ cluster_key }}
-
 cluster_name: {{ cluster_name }}
 
 # Cluster IPs
 master_discovery: static
 master_list:
-- {{ master_ip0 }}
+{% for host in groups['dcos-masters'] %}
+  - {{ hostvars[host]['ansible_host'] }} 
+{% endfor %}
 
 agent_list:
-- {{ priv_agent_ip0 }}
+{% for host in groups['dcos-agents'] %}
+  - {{ hostvars[host]['ansible_host'] }}
+{% endfor %}
 
-# DNS (Azure)
+# DNS (Google)
 resolvers:
-- {{ dns_resolver }}
+{{ dns_resolvers }}
 
 # Exhibitor backend, uses internal DC/OS storage
 exhibitor_storage_backend: static
